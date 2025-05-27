@@ -1,0 +1,89 @@
+/* GLOBAL: No scrollbars anywhere */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Main container */
+.login-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: url('https://w0.peakpx.com/wallpaper/871/645/HD-wallpaper-twitter-blue-logo-blue-brickwall-twitter-logo-brands-twitter-neon-logo-twitter.jpg') no-repeat center center / cover;
+  font-family: Arial, sans-serif;
+}
+
+/* Left side content */
+.left-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  overflow: hidden;
+}
+
+.left-panel h1 {
+  font-size: 48px;
+  margin: 0 0 20px 0;
+}
+
+.left-panel p {
+  font-size: 18px;
+  max-width: 400px;
+  margin: 0;
+}
+
+/* Right panel */
+.right-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.85);
+  overflow: hidden;
+}
+
+/* Login box */
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  text-align: center;
+}
+
+.login-box h3 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #1da1f2;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.signup-text {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.signup-text a {
+  color: #1da1f2;
+  text-decoration: none;
+}
