@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  LoginWithX(){
+    console.log("Login with X clicked..."
 
+    )
+  }
 }
