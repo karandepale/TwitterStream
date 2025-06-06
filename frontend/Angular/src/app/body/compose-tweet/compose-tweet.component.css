@@ -1,0 +1,117 @@
+/* compose-tweet.component.css */
+.compose-tweet-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 500px; /* Keep defined width */
+  max-width: 90%; /* Ensures responsiveness for smaller screens */
+  font-family: Arial, sans-serif;
+  color: #333;
+
+  /* Forceful Centering within the content area */
+  position: absolute;
+  /* Calculate the left position:
+     Starts after the sidebar (e.g., 240px)
+     Then adds half of the remaining width (100vw - sidebar_width)
+  */
+  left: calc(240px + (100vw - 240px) / 2); /* IMPORTANT: Adjust '240px' to your sidebar's actual width! */
+  transform: translateX(-50%); /* Moves the component back by half its own width to truly center it */
+  top: 100px; /* Adjust this value to control its vertical position from the top of the page */
+  /* If the sidebar is not fixed and content scrolls, top might need adjustment relative to its scrolling parent */
+}
+
+/* The rest of your existing CSS remains the same */
+.compose-tweet-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.compose-tweet-header h2 {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.compose-tweet-body {
+  padding: 20px;
+}
+
+.tweet-textarea {
+  width: calc(100% - 20px); /* Account for padding */
+  min-height: 120px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1em;
+  resize: vertical;
+  outline: none;
+}
+
+.tweet-textarea::placeholder {
+  color: #888;
+}
+
+.tweet-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.char-count {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.tweet-button {
+  background-color: #1da1f2; /* Twitter blue */
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 18px;
+  font-size: 0.9em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tweet-button:hover {
+  background-color: #0c85d0; /* Darker blue on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Success Toast message*/
+
+.toast-message {
+  position: fixed;
+  top: 100px; 
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  animation: fadeInOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+

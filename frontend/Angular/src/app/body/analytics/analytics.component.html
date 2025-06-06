@@ -1,0 +1,63 @@
+<div class="scroll-wrapper">
+    <div class="add-content-card">
+    <div class="header">
+        <span class="plus-icon">➕</span>
+        <span>Add Content</span>
+        <div class="window-controls">
+        <span class="minimize">🗕</span>
+        <span class="maximize">🗖</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="form-group">
+        <label for="url">Content Url <span class="required">*</span></label>
+        <div class="url-input-group">
+            <input
+            id="url"
+            type="text"
+            [(ngModel)]="contentUrl"
+            placeholder="https://twitter.com/..."
+            />
+            <button class="get-info-btn" (click)="GetAnalytics()">Get Info ⏬</button>
+        </div>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="isLoading" class="loading-message">
+        <p>Loading...</p>
+    </div>
+
+    <!-- Error -->
+    <div class="error-message" *ngIf="errorMsg">
+        <p>{{ errorMsg }}</p>
+    </div>
+
+    <!-- Analytics Output -->
+    <div class="analytics-output" *ngIf="showAnalytics">
+        <!-- Profile Picture -->
+        <div class="profile-section" *ngIf="userData?.profile_image_url">
+        <img [src]="userData.profile_image_url" alt="Profile Image" class="profile-img" />
+        </div>
+
+        <p><strong>Screen Name:</strong> {{ userData?.username }}</p>
+        <p><strong>Tweet:</strong> {{ tweetData?.text }}</p>
+        <p><strong>Followers:</strong> {{ userData?.public_metrics?.followers_count }}</p>
+        <p><strong>Date Time:</strong> {{ formatDate(tweetData?.created_at) }}</p>
+
+        <!-- Media Preview -->
+        <div class="media-preview" *ngIf="mediaType && mediaUrl">
+        <div [ngSwitch]="mediaType">
+            <img *ngSwitchCase="'photo'" [src]="mediaUrl" alt="Tweet Image" class="media-img" />
+            <img *ngSwitchCase="'animated_gif'" [src]="mediaUrl" alt="GIF Preview" class="media-img" />
+            <video *ngSwitchCase="'video'" controls class="media-video">
+            <source [src]="mediaUrl" type="video/mp4" />
+            Your browser does not support the video tag.
+            </video>
+            <p *ngSwitchDefault>No preview available</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>

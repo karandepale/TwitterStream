@@ -1,0 +1,91 @@
+
+.add-content-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  max-height: 500px;  
+  overflow-y: auto;  
+  overflow-x: hidden; 
+  width: 100%;
+  margin-left:120px;
+}
+.scroll-wrapper {
+  max-height: 700px;
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #444;
+  color: white;
+  padding: 10px;
+  border-radius: 4px 4px 0 0;
+}
+
+.window-controls span {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  padding-top: 15px;
+}
+
+.url-input-group {
+  display: flex;
+}
+
+.url-input-group input {
+  flex: 1;
+  padding: 6px;
+}
+
+.get-info-btn {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.tag-save-btn {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.analytics-output {
+  margin-top: 20px;
+  background: #f9f9f9;
+  padding: 10px;
+  border-left: 4px solid #2196F3;
+
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+
+.profile-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.media-preview {
+  margin-top: 15px;
+}
+
+.media-img, .media-video {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}

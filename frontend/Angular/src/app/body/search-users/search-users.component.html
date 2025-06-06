@@ -1,0 +1,43 @@
+<div class="search-wrapper">
+  <div class="search-card">
+    <h3>Search Users</h3>
+    <div class="search-bar-container">
+      <input type="text" [(ngModel)]="searchText" placeholder="Search by username e.g., elonmusk, twitter" />
+      <button (click)="SearchUserProfile()">Search Users</button>
+    </div>
+  </div>
+
+  <ul class="user-list user-list-scroll">
+    <li class="user-item" *ngFor="let user of userProfiles; let idx = index" [hidden]="idx > 1">
+      <div class="user-avatar">
+        <img [src]="user.profile_image_url" alt="{{ user.username }}" />
+      </div>
+      <div class="user-info">
+        <div class="user-name">
+          {{ user.name }}
+          <span *ngIf="user.verified" class="verified-badge" title="Verified">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#1da1f2" style="vertical-align: middle;">
+              <circle cx="12" cy="12" r="12" fill="#1da1f2"/>
+              <path d="M10 15l-3.5-3.5 1.41-1.41L10 12.17l5.09-5.09 1.41 1.41z" fill="#fff"/>
+            </svg>
+          </span>
+        </div>
+        <div class="user-handle">&#64;{{ user.username }}</div>
+        <div class="user-location" *ngIf="user.location">
+          <span class="material-icons" style="font-size:14px;vertical-align:middle;">location_on</span>
+          {{ user.location }}
+        </div>
+        <div class="user-description">{{ user.description }}</div>
+        <div class="user-url" *ngIf="user.url">
+          <a [href]="user.url" target="_blank">{{ user.url }}</a>
+        </div>
+      </div>
+      <div class="user-stats">
+        <div><b>{{ user.public_metrics.followers_count | number }}</b> followers</div>
+        <div><b>{{ user.public_metrics.following_count | number }}</b> following</div>
+        <div><b>{{ user.public_metrics.tweet_count | number }}</b> tweets</div>
+        <div *ngIf="user.verified_type === 'blue'" class="verified-type">Blue Verified</div>
+      </div>
+    </li>
+  </ul>
+</div>

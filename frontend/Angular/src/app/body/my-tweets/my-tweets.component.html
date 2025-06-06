@@ -1,0 +1,62 @@
+<div class="tweets-wrapper">
+  <div class="recent-tweets-container">
+
+    <!-- Loader shown when tweets are empty -->
+    <div class="loader-wrapper" *ngIf="tweets.length === 0">
+      <img src="data:image/png;base64,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" alt="Loading..." class="loader-img">
+    </div>
+
+    <!-- Tweets section shown only when tweets are loaded -->
+    <div *ngIf="tweets.length > 0">
+      <div class="header">
+        <span>My Tweets</span>
+        <button class="view-all-btn" (click)="toggleViewAll()">
+          {{ showAll ? 'Show Less' : 'View All' }}
+        </button>
+      </div>
+
+      <div class="tweets-scrollable" [class.scrollable]="showAll">
+        <div class="tweet-card" *ngFor="let tweet of displayedTweets">
+          <div class="profile">
+            <div class="avatar">
+              <img *ngIf="userProfile.profileImageUrl" [src]="userProfile.profileImageUrl" alt="Profile" class="profile-image">
+            </div>
+            <div>
+              <div class="username">{{ userProfile.screenName }} ({{ userProfile.UserName }})</div>
+              <div class="time">{{ tweet.created_at | date:'medium' }}</div>
+            </div>
+          </div>
+
+          <div class="tweet-content" [ngClass]="{ 'wrapped-text': !showAll }">
+            {{ tweet.text }}
+          </div>
+
+          <div class="tweet-actions">
+            <span class="action comment" title="Replies"><i class="icon comment"></i> {{ tweet.public_metrics.reply_count }}</span>
+            <span class="action retweet" title="Retweets"><i class="icon retweet"></i> {{ tweet.public_metrics.retweet_count }}</span>
+            <span class="action like" title="Likes"><i class="icon like"></i> {{ tweet.public_metrics.like_count }}</span>
+            <span class="action quote" title="Quotes"><i class="icon quote"></i> {{ tweet.public_metrics.quote_count }}</span>
+            <span class="action bookmark" title="Bookmarks"><i class="icon bookmark"></i> {{ tweet.public_metrics.bookmark_count }}</span>
+            <span class="action impression" title="Impressions"><i class="icon impression"></i> {{ tweet.public_metrics.impression_count }}</span>
+            <span class="action tweet-id">ID: {{ tweet.id }}</span>
+          </div>
+
+          <!-- View on X link -->
+          <div class="showonxclass">
+            <a
+              class="action tweet-link"
+              [href]="'https://x.com/karanloco/status/' + tweet.id"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View Tweet"
+            >
+              <i class="icon link"></i>
+              View on X
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

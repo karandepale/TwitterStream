@@ -1,0 +1,152 @@
+.search-wrapper {
+  width: 300%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  justify-content: center;
+  margin-left : 100px;
+}
+
+.search-bar-container {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  gap: 12px;
+  align-items: center;
+}
+
+.search-bar-container input[type="text"] {
+  flex: 1;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.search-bar-container button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.search-bar-container button:hover {
+  background-color: #0056b3;
+}
+
+.search-card {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.user-list-scroll {
+  max-height: 400px; /* Show only two cards (2x card height + padding) */
+  overflow-y: auto;
+}
+
+.user-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  gap: 20px;
+}
+
+.user-avatar img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #1da1f2;
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 180px;
+  padding-right: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.verified-badge {
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.user-handle {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.user-location {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.user-description {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.user-url a {
+  font-size: 14px;
+  color: #1da1f2;
+  text-decoration: none;
+}
+
+.user-url a:hover {
+  text-decoration: underline;
+}
+
+.user-stats {
+  min-width: 140px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 15px;
+  color: #333;
+}
+
+.verified-type {
+  color: #1da1f2;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 4px;
+}

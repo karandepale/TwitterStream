@@ -1,0 +1,32 @@
+<div *ngIf="showToast" class="toast-message">
+  Tweet posted successfully!
+</div>
+
+<div class="compose-tweet-container">
+  <div class="compose-tweet-header">
+    <h2>Compose Tweet</h2>
+  </div>
+
+  <div class="compose-tweet-body"> 
+    <textarea
+      [(ngModel)]="tweetContent"
+      (input)="onTextChange($event)"
+      placeholder="What's happening?"
+      maxlength="280"
+      class="tweet-textarea"  
+    ></textarea>
+
+    <!--  Media File Input -->
+    <div class="media-upload">
+      <input id="mediaInput" type="file" (change)="onMediaSelected($event)" multiple />
+      <div class="media-preview" *ngIf="selectedMedia.length > 0">
+        <p *ngFor="let media of selectedMedia">{{ media.name }}</p>
+      </div>
+    </div>
+
+    <div class="tweet-footer">
+      <span class="char-count">{{ charCount }} / 280</span>
+      <button class="tweet-button" (click)="onTweet()">Tweet</button>
+    </div>
+  </div>
+</div>

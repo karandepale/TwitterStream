@@ -1,0 +1,28 @@
+.body-container {
+  display: flex;
+  justify-content: center;  /* Center content horizontally */
+  width: 100%;              /* Full width of the screen */
+  padding: 20px;            /* Optional: space around content */
+  box-sizing: border-box;   /* Include padding in width calculation */
+}
+
+
+router-outlet {
+  flex: 1;
+  display: block;
+}
+
+/* Main content wrapper inside loaded components */
+.body-container {
+  display: flex;
+  justify-content: center;     /* Center horizontally */
+  width: 100%;                 /* Take full horizontal space */
+  padding: 20px;               /* Space around content */
+  box-sizing: border-box;
+}
+
+/* Optional: inner wrapper for max width */
+.page-content {
+  width: 100%;
+  max-width: 1200px;           /* Control content width */
+}
