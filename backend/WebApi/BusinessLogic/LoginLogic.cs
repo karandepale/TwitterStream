@@ -196,6 +196,19 @@ public class LoginLogic : ILoginLogic
     }
 
 
+    public string Logout(string twitteruid)
+    {
+        try
+        {
+            return _loginWrapper.Logout(twitteruid);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
 
 
 }

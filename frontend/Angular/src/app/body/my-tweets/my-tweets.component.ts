@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TwitterUserProfile } from '../../Models/twitter-user-profile.model';
 import { CentralizeServiceService } from '../../centralize-service.service';
 import { CommonModule } from '@angular/common';
-
+ 
 @Component({
   selector: 'app-my-tweets',
   imports: [CommonModule],

@@ -53,21 +53,4 @@ ngOnInit() {
 
 
 
-// ngOnInit() {
-//   this.route.queryParams.subscribe(params => {
-//     console.log("CONGRATULATIONS I AM CALLED");
-//     const Status = params['Status'];
-
-//     if (Status == "Success") {
-//       console.log("Login success for");
-//       this.router.navigate(['/login-success']);
-//     }
-
-//   });
-// }
-
-
-
-
-
 }

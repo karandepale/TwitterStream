@@ -104,6 +104,31 @@ namespace WebApi.Wrapper
             }
         }
 
+        public string Logout(string twitterUID)
+        {
+            try
+            {
+                var user = _dbContext.PersonalProjectTable
+                    .FirstOrDefault(u => u.TwitterUserId == twitterUID);
+
+                if (user != null)
+                {
+                    user.IsExist = false; 
+                    _dbContext.SaveChanges();
+                    return "1"; // Success
+                }
+                else
+                {
+                    return "0"; // User not found
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Logout failed: " + ex.Message);
+                return "Failure";
+            }
+        }
+
 
     }
 }

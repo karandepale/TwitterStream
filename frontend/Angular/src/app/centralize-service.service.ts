@@ -27,7 +27,7 @@ export class CentralizeServiceService {
 }
 
 ComposeTweet(TweetUID: string, tweetContent: string): Observable<any> {
-  console.log("Compose Tweet Data on Centralize Service: "  + TweetUID, tweetContent)
+ // console.log("Compose Tweet Data on Centralize Service: "  + TweetUID, tweetContent)
   const payload = {
     TweetUID,
     tweetContent
@@ -43,7 +43,7 @@ ComposeTweetWithMedia(formData: FormData): Observable<any> {
 }
 
 SearchTweetProfiles(UserNames : string) : Observable<any>{
-  console.log("SearchTweetProfiles in the centralize service:" + UserNames);
+  //console.log("SearchTweetProfiles in the centralize service:" + UserNames);
   return this.http.get<any>(`${environment.baseUrl}/TweetDashboard/SearchTweeterProfile`,{
     params:{
       UserNames: UserNames.toString()
@@ -52,13 +52,28 @@ SearchTweetProfiles(UserNames : string) : Observable<any>{
 } 
 
 GetAnalytics(ContentUrl : string) : Observable<any>{
-  console.log("GetAnalytics in the centralize service:" + ContentUrl);
+  //console.log("GetAnalytics in the centralize service:" + ContentUrl);
   return this.http.get<any>(`${environment.baseUrl}/TweetDashboard/GetAnalytics`,{
     params:{
       ContentUrl: ContentUrl.toString()
     }
   });
 } 
+
+
+logout(twitterUID: string): Observable<any> {
+  console.log("Logout called in Centralize Service with twitterUID:", twitterUID);
+  return this.http.post<any>(
+    `${environment.baseUrl}/Login/logout`,
+    {}, 
+    {
+      params: {
+        twitterUID: twitterUID
+      }
+    }
+  );
+}
+
 
 
 }

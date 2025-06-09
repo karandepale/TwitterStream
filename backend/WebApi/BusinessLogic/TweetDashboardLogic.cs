@@ -364,6 +364,7 @@ namespace WebApi.BusinessLogic
 
                 request.AddJsonBody(body);
 
+                Thread.Sleep(4000);
                 var response = await client.ExecuteAsync(request);
 
                 if (!response.IsSuccessful)

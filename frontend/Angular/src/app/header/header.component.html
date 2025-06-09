@@ -1,8 +1,6 @@
   <div class="header-container">
 
    
-
-
     <div class="leftbox">
         <img class="twitter-img" src="data:image/png;base64,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" alt="Twitter Logo" />
        <div class="text-content">
@@ -75,9 +73,15 @@
                
 
              
-                <div class="menu-item sign-out">
+                <!-- <div class="menu-item sign-out">
                     <span class="icon">🚪</span> Sign Out
+                </div>   -->
+               <div class="menu-item sign-out" (click)="onSignOut()" tabindex="0" role="button">
+                   <span class="icon">🚪</span> Sign Out
                 </div>
+
+
+                
             </div>
         </div>
 

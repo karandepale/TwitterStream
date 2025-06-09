@@ -137,4 +137,41 @@ public class LoginController : ControllerBase
         return Redirect(redirectUrl);*/
     }
 
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> logout(string twitterUID)
+    {
+        try
+        {
+            var logoutRes =  _loginLogic.Logout(twitterUID);
+            if(logoutRes == "1")
+            {
+                return Ok(new
+                {
+                    message = "Logout successful",
+                    Status = true
+                });
+            }
+            else
+            {
+                return BadRequest(new
+                {
+                    message = "Logout failed",
+                    Status = false
+                });
+            }
+          
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new
+            {
+                message = "Error occurred during logout",
+                error = ex.Message,
+                Status = false
+            });
+        }   
+    }
+
+
 }

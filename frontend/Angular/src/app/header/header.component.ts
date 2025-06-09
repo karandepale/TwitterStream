@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TwitterUserProfile } from '../Models/twitter-user-profile.model';
+import { CentralizeServiceService } from '../centralize-service.service';
 
 
 @Component({
@@ -11,7 +12,9 @@ import { TwitterUserProfile } from '../Models/twitter-user-profile.model';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
+   
 
+constructor(private _centralizeService : CentralizeServiceService){}
 
   profile!: TwitterUserProfile;
   showUserMenu: boolean = false;
@@ -23,7 +26,8 @@ export class HeaderComponent implements OnInit {
     FollowersCount:'',
     TweetCount:'',
     Email:'',
-    profileImageUrl:''
+    profileImageUrl:'',
+    TwitterUID:''
   };
 
  
@@ -42,6 +46,7 @@ export class HeaderComponent implements OnInit {
       this.userProfile.TweetCount = this.profile.tweetCount;
       this.userProfile.Email = this.profile.Email;
       this.userProfile.profileImageUrl = this.profile.profileImageUrl;
+        this.userProfile.TwitterUID = this.profile.TwitterUID;
     }
   }
 
@@ -50,6 +55,18 @@ showUserMenuFun(){
   //alert("Working");
 }
 
+
+onSignOut(){
+ // console.log('Sign out TwitterUID:', this.userProfile.TwitterUID);
+  this._centralizeService.logout(this.userProfile.TwitterUID).subscribe({
+    next: (res) => {
+      //console.log('Sign out response:', res);
+      localStorage.removeItem('twitterUserProfileData');
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+})};
   
+
 
 }
