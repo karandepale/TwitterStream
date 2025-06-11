@@ -1,0 +1,4 @@
+2025-06-10 11:29:31.705 +05:30 [ERR] This is an error log with detail: File not found
+2025-06-10 11:33:09.489 +05:30 [ERR] LoginController: Login(): Error->Attempted to divide by zero.
+2025-06-10 11:33:13.531 +05:30 [ERR] This is a test error for Seq.
+2025-06-10 19:20:07.190 +05:30 [ERR] TweetDashboardController: GetTrendsPlaces() failed at 6/10/2025 1:50:07 PM. Exception: Error fetching available trends: API call failed: 0, Content: 

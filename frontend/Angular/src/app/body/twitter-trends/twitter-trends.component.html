@@ -1,0 +1,130 @@
+<h5 class="heading">
+  <h3>Twitter Trends</h3>
+  Discover what's trending on Twitter in real-time based on selected countries and cities. Stay informed with the latest hashtags and viral topics across regions.
+</h5>
+
+
+<!-- Dropdown Container - Always Visible -->
+<div class="dropdown-container">
+    
+  <!-- Country Dropdown -->
+<label for="countrySelect">Select Country:</label>
+<select
+  id="countrySelect"
+  [(ngModel)]="selectedCountry"
+  (ngModelChange)="onCountryChange()"
+  class="trend-dropdown"
+  [disabled]="isLoading"
+>
+  <option [ngValue]="null" disabled>Select country</option>
+  <option *ngFor="let country of uniqueCountries" [ngValue]="country">
+    {{ country }}
+  </option>
+</select>
+
+<!-- City Dropdown -->
+<label for="citySelect">Select City:</label>
+<select
+  id="citySelect"
+  [(ngModel)]="selectedPlace"
+  (ngModelChange)="updateSelectedWoeid()"
+  class="trend-dropdown"
+  [disabled]="!selectedCountry || isLoading"
+>
+  <option [ngValue]="null" disabled>Select City</option>
+  <option *ngFor="let place of filteredPlaces" [ngValue]="place.woeid">
+    {{ place.name }}
+  </option>
+</select>
+
+</div>
+
+
+<!-- Selected Location Display -->
+<div class="selected-location-graph">
+  <h4>Selected Location</h4>
+  <div class="location-display">
+    <span class="country">{{ selectedCountry || 'Country not selected' }}</span>
+    <span *ngIf="getSelectedPlaceName()" class="arrow">→</span>
+    <span *ngIf="getSelectedPlaceName()" class="city">{{ getSelectedPlaceName().split(',')[0] }}</span>
+  </div>
+</div>
+
+<!-- Loading Indicator -->
+<div *ngIf="isLoading" class="loading-container">
+  <div class="spinner"></div>
+  <p>Loading trends...</p>
+</div>
+
+<!-- Trends Cards Container - Only show when we have trends data -->
+<div *ngIf="trendsData && trendsData.length > 0 && !isLoading" class="trends-container">
+  <h2 class="trends-title">Trending Now in {{ getSelectedPlaceName() }}</h2>
+  
+  <div class="trends-grid">
+    <div *ngFor="let trend of trendsData; let i = index" 
+         class="trend-card" 
+         [class.promoted]="trend.promotedContent"
+         (click)="openTrendUrl(trend.url)">
+      
+      <div class="trend-header">
+        <span class="trend-rank">#{{ i + 1 }}</span>
+        <span *ngIf="trend.promotedContent" class="promoted-badge">Promoted</span>
+      </div>
+      
+      <div class="trend-content">
+        <h3 class="trend-name">{{ trend.name }}</h3>
+        <p *ngIf="trend.tweetVolume" class="tweet-volume">
+          {{ formatTweetVolume(trend.tweetVolume) }} Tweets
+        </p>
+        <p *ngIf="!trend.tweetVolume" class="tweet-volume no-volume">
+          Trending
+        </p>
+      </div>
+      
+      <div class="trend-footer">
+        <span class="trend-query">{{ decodeURIComponent(trend.query) }}</span>
+        <button class="view-more-btn" (click)="openTrendUrl(trend.url); $event.stopPropagation()">
+          View More
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- No Data Message -->
+<div *ngIf="selectedPlace && !trendsData?.length && !isLoading" class="no-data-container">
+  <div class="no-data-message">
+    <h3>No trends available</h3>
+    <p>No trending data found for the selected location.</p>
+  </div>
+</div>
+
+<!-- Error Message -->
+<div *ngIf="errorMessage" class="error-container">
+  <div class="error-message">
+    <h3>Error</h3>
+    <p>{{ errorMessage }}</p>
+    <button (click)="retryFetchTrends()" class="retry-btn">Retry</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="dropdown-container">
+  <label for="trendPlaceSelect">Select a Trending Place:</label>
+  <select id="trendPlaceSelect" [(ngModel)]="selectedPlace" (ngModelChange)="updateSelectedWoeid()" class="trend-dropdown">
+    <option value="" disabled [selected]="!selectedPlace">Select Country</option>
+    <option *ngFor="let place of TrendPlaces" [value]="place.woeid">
+      {{ place.name }} - {{ place.country }}
+    </option>
+  </select>
+</div> -->

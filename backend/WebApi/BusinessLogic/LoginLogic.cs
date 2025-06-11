@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-using RestSharp;
+using Newtonsoft.Json.Linq;
+using RestSharp; 
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -13,12 +15,14 @@ public class LoginLogic : ILoginLogic
     private readonly ConfigSettings _twitterSettings;
     private readonly IConfiguration _configuration;
     private readonly ILoginWrapper _loginWrapper;
+    private static  ILogger<LoginLogic> _logger;
 
-    public LoginLogic(IOptions<ConfigSettings> twitterOptions, IConfiguration configuration , ILoginWrapper loginWrapper)
+    public LoginLogic(IOptions<ConfigSettings> twitterOptions, IConfiguration configuration , ILoginWrapper loginWrapper, ILogger<LoginLogic> logger)
     {
         _twitterSettings = twitterOptions.Value;
         _configuration = configuration;
         _loginWrapper = loginWrapper;
+        _logger = logger;
     }
 
     public string GenerateLoginUrl()
@@ -116,18 +120,19 @@ public class LoginLogic : ILoginLogic
             }
             catch (Exception)
             {
-
+                throw new Exception("Failed to deserialize response content to TwitterAuthorizationCodeResponse.");
             }
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception($"Failed to exchange code for token. Status: {response.StatusCode}, Message: {response.Content}");
+                throw new Exception($"Failed to exchange code for token. Status: {response.StatusCode}, Message: {response.Content},code-{code}");
             }
 
             return responseObject;
         }
         catch (Exception ex)
         {
+            _logger.LogError($"LoginLogic: ExchangeCodeForAccessToken() failed at {DateTime.UtcNow}. Exception: {ex.Message} ,AuthorizationCode-{code} ");
             throw new Exception($"Token exchange failed: {ex.Message}", ex);
         }
     }
@@ -141,11 +146,12 @@ public class LoginLogic : ILoginLogic
             byte[] credentialsBytes = Encoding.UTF8.GetBytes(credentials);
             string encodedCredentials = Convert.ToBase64String(credentialsBytes);
 
+            _logger.LogWarning($"LoginLogic: CreateBase64EncodedAuthorization(): ClientID->{OAuth2clientId}, ClientSecret->{OAuth2clientSecret}, encodedCredentials-{encodedCredentials}");
             return encodedCredentials;
         }
         catch (Exception ex)
         {
-            return null;
+            return ex.Message;
         }
     }
 
@@ -165,18 +171,19 @@ public class LoginLogic : ILoginLogic
 
             if (response.IsSuccessful && response.Content != null)
             {
-                 var userProfileResponse = JsonConvert.DeserializeObject<TwitterUserProfileResponse>(response.Content);
+                _logger.LogWarning($"LoginLogic: GetTwitterUserProfile(): Response:{response.Content} ");
+                var userProfileResponse = JsonConvert.DeserializeObject<TwitterUserProfileResponse>(response.Content);
                 return userProfileResponse;
             }
             else
             {
-                throw new Exception($"Failed to fetch user profile: {response.StatusCode} - {response.ErrorMessage}");
+                throw new Exception($"Failed to fetch user profile: {response.StatusCode} - {response.ErrorMessage}, userID-{userID} ,AccessToken-{TokensData.access_token} , RefreshToken: {TokensData.refresh_token}");
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
-            return null;
+            _logger.LogError($"LoginLogic: GetTwitterUserProfile(): Error->{ex.Message}, userID-{userID} ,AccessToken-{TokensData.access_token} , RefreshToken: {TokensData.refresh_token}");
+            throw new Exception($"LoginLogic: GetTwitterUserProfile() : Failed to fetch user profile: {ex.Message}", ex);
         }
 
     }
@@ -205,7 +212,7 @@ public class LoginLogic : ILoginLogic
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-            return null;
+            throw new Exception($"LoginLogic: Logout() : Failed to logout user: {ex.Message} , TwitterUID-{twitteruid}");
         }
     }
 

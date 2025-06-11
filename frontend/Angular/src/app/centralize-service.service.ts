@@ -50,7 +50,7 @@ SearchTweetProfiles(UserNames : string) : Observable<any>{
     }
   });
 } 
-
+ 
 GetAnalytics(ContentUrl : string) : Observable<any>{
   //console.log("GetAnalytics in the centralize service:" + ContentUrl);
   return this.http.get<any>(`${environment.baseUrl}/TweetDashboard/GetAnalytics`,{
@@ -72,6 +72,21 @@ logout(twitterUID: string): Observable<any> {
       }
     }
   );
+}
+
+
+  GetTrendsPlaces() : Observable<any>{
+    return this.http.get<any>(`${environment.baseUrl}/TweetDashboard/GetTrendsPlaces`)
+  }
+
+
+  TrendsByWoeid(woeid: number): Observable<any> {
+    console.log("Woeid in centralize service :" , woeid);
+  return this.http.get<any>(`${environment.baseUrl}/TweetDashboard/TrendsByWoeid`, {
+    params: {
+      woeid: woeid.toString()
+    }
+  });
 }
 
 

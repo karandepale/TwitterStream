@@ -11,9 +11,11 @@ namespace WebApi.Wrapper
     public class LoginWrapper : ILoginWrapper
     {
         private readonly AppDbContext _dbContext;
-        public LoginWrapper(AppDbContext dbContext)
+        private static ILogger<LoginLogic> _logger;
+        public LoginWrapper(AppDbContext dbContext, ILogger<LoginLogic> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         public string InsertTokensAndUserDataInDB(TwitterAuthorizationCodeResponse authResponse, TwitterUserProfileResponse profileResponse)
@@ -99,8 +101,8 @@ namespace WebApi.Wrapper
             }
             catch (Exception ex)
             {
-                Console.WriteLine("DB insert failed: " + ex.Message);
-                return "Failure";
+                _logger.LogError($"LoginWrapper : InsertTokensAndUserDataInDB() , Error:{ex.Message.ToString()}");
+                throw new Exception("DB insert failed: " + ex.Message, ex);
             }
         }
 
@@ -124,8 +126,8 @@ namespace WebApi.Wrapper
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Logout failed: " + ex.Message);
-                return "Failure";
+                _logger.LogError($"LoginWrapper : Logout() , Error:{ex.Message.ToString()}");
+                throw new Exception("Logout failed: " + ex.Message, ex);
             }
         }
 

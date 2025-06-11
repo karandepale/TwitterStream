@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Serilog;
 using System.Text.Json;
 using WebApi.Interfaces;
 using WebApi.Model;
@@ -9,11 +12,15 @@ using WebApi.Model;
 public class LoginController : ControllerBase
 {
     private readonly ILoginLogic _loginLogic;
+    private readonly ILogger<LoginController> _logger;
 
-    public LoginController(ILoginLogic loginLogic )
+    public LoginController(ILoginLogic loginLogic , ILogger<LoginController> logger )
     {
         _loginLogic = loginLogic;
+        _logger = logger;
     }
+
+
 
     [HttpGet("test")]
     public IActionResult Test()
@@ -31,6 +38,9 @@ public class LoginController : ControllerBase
     [HttpGet("login")]
     public IActionResult Login()
     {
+
+        _logger.LogInformation($"Login endpoint hit at {DateTime.UtcNow}");
+
         try
         {
             var requestUrl = _loginLogic.GenerateLoginUrl();
@@ -42,6 +52,7 @@ public class LoginController : ControllerBase
 
             requestUrl = $"{requestUrl}&state={encodedState}";
 
+            _logger.LogWarning($"LoginController: Login() :Final authorization URL: userId -> {userId}, jwtToken -> {jwtToken}, RequestUrl -> {requestUrl}");
             return Ok(new
             {
                 message = $"Authorization URL opened in browser and Email sent to emailid",
@@ -51,6 +62,7 @@ public class LoginController : ControllerBase
         }
         catch (Exception ex)
         {
+            _logger.LogError($"LoginController: Login() failed at {DateTime.UtcNow}. Exception: {ex.Message}");
             return BadRequest(new
             {
                 message = "Error occurred while generating login URL",
@@ -122,6 +134,7 @@ public class LoginController : ControllerBase
         }
         catch (Exception ex)
         {
+            _logger.LogError($"LoginController: Callback() failed at {DateTime.UtcNow}. Exception: {ex.Message}");
             return BadRequest(new
             {
                 message = "Error occurred during callback processing",
@@ -143,6 +156,7 @@ public class LoginController : ControllerBase
     {
         try
         {
+            _logger.LogWarning($"LoginController: logout() : twitterUID:-> {twitterUID}");
             var logoutRes =  _loginLogic.Logout(twitterUID);
             if(logoutRes == "1")
             {
@@ -164,6 +178,7 @@ public class LoginController : ControllerBase
         }
         catch (Exception ex)
         {
+            _logger.LogError($"LoginController: Callback() failed at {DateTime.UtcNow}. Exception: {ex.Message}");
             return BadRequest(new
             {
                 message = "Error occurred during logout",

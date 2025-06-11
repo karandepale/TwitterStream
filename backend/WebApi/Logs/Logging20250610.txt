@@ -1,0 +1,117 @@
+2025-06-10 11:14:15.942 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-10 11:14:15.942 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/swagger/swagger-ui-bundle.js - null null
+2025-06-10 11:14:15.942 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/swagger/index.css - null null
+2025-06-10 11:14:15.942 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/_vs/browserLink - null null
+2025-06-10 11:14:15.942 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/swagger/swagger-ui.css - null null
+2025-06-10 11:14:15.942 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/swagger/index.js - null null
+2025-06-10 11:14:15.942 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/swagger/swagger-ui-standalone-preset.js - null null
+2025-06-10 11:14:16.085 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-10 11:14:16.086 +05:30 [INF] Hosting environment: Development
+2025-06-10 11:14:16.086 +05:30 [INF] Content root path: C:\TweeterStream\backend\WebApi
+2025-06-10 11:14:16.225 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/_framework/aspnetcore-browser-refresh.js - 200 16497 application/javascript; charset=utf-8 301.6064ms
+2025-06-10 11:14:16.261 +05:30 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-06-10 11:14:16.264 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-06-10 11:14:16.268 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/swagger/index.css - 200 202 text/css 348.8473ms
+2025-06-10 11:14:16.274 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/swagger/swagger-ui.css - 200 154949 text/css 354.5284ms
+2025-06-10 11:14:16.327 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-06-10 11:14:16.352 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/swagger/swagger-ui-standalone-preset.js - 200 229223 text/javascript 432.8105ms
+2025-06-10 11:14:16.356 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-06-10 11:14:16.397 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/_vs/browserLink - 200 null text/javascript; charset=UTF-8 478.1109ms
+2025-06-10 11:14:16.420 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/swagger/swagger-ui-bundle.js - 200 1484234 text/javascript 500.5756ms
+2025-06-10 11:14:16.500 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/swagger/index.js - 200 null application/javascript;charset=utf-8 581.0122ms
+2025-06-10 11:14:16.853 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/swagger/v1/swagger.json - null null
+2025-06-10 11:14:16.871 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 18.8681ms
+2025-06-10 11:14:59.288 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/api/Login/login - null null
+2025-06-10 11:14:59.313 +05:30 [INF] CORS policy execution successful.
+2025-06-10 11:14:59.333 +05:30 [INF] Executing endpoint 'LoginController.Login (WebApi)'
+2025-06-10 11:14:59.361 +05:30 [INF] Route matched with {action = "Login", controller = "Login"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller LoginController (WebApi).
+2025-06-10 11:14:59.844 +05:30 [INF] LoginController: Login(): requestUrl->https://twitter.com/i/oauth2/authorize?response_type=code&client_id=RGxBbEdNaUFFb2tPYU9Fcl9ZbFc6MTpjaQ&redirect_uri=https%3A%2F%2Flocalhost%3A44310%2Fapi%2FLogin%2Fcallback&scope=media.write%20users.read%20tweet.read%20tweet.write%20offline.access%20dm.write%20dm.read%20like.write%20mute.write%20follows.write&state=random_state_123&code_challenge=12345&code_challenge_method=plain&state=random_state_123%7CeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImVtYWlsaWQiLCJVc2VySUQiOiI4IiwiZXhwIjoxNzQ5NTM3ODk5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3Mjc2LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyNzYvIn0.zJ8Wap_ius46Z8YBIiFvM5v9O6nH9sx6xthKbM6gX0I
+2025-06-10 11:14:59.852 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`3[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-10 11:14:59.869 +05:30 [INF] Executed action LoginController.Login (WebApi) in 502.7176ms
+2025-06-10 11:14:59.870 +05:30 [INF] Executed endpoint 'LoginController.Login (WebApi)'
+2025-06-10 11:14:59.873 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/api/Login/login - 200 null application/json; charset=utf-8 584.8209ms
+2025-06-10 11:15:04.379 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/api/Login/callback?state=random_state_123%7CeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImVtYWlsaWQiLCJVc2VySUQiOiI4IiwiZXhwIjoxNzQ5NTM3ODk5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3Mjc2LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyNzYvIn0.zJ8Wap_ius46Z8YBIiFvM5v9O6nH9sx6xthKbM6gX0I&code=eWlUdEhLaDVLQThETlVDc2VxTXJnel9MckVvU0Q1Z0owUjRDRFJnUkFlR1VXOjE3NDk1MzQyOTk3MzI6MTowOmFjOjE - null null
+2025-06-10 11:15:04.397 +05:30 [INF] Executing endpoint 'LoginController.Callback (WebApi)'
+2025-06-10 11:15:04.417 +05:30 [INF] Route matched with {action = "Callback", controller = "Login"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Callback(System.String, System.String) on controller LoginController (WebApi).
+2025-06-10 11:15:08.251 +05:30 [INF] Executed DbCommand (74ms) [Parameters=[@__profileResponse_data_id_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[LoggedinUserID], [p].[AccessToken], [p].[CreatedAt], [p].[CreatedTimeIST], [p].[Description], [p].[Email], [p].[ExpiresIn], [p].[FollowersCount], [p].[FollowingCount], [p].[IsExist], [p].[IsExpired], [p].[LikeCount], [p].[ListedCount], [p].[Location], [p].[MediaCount], [p].[Name], [p].[OAuth2ClientID], [p].[OAuth2ClientSecret], [p].[ProfileImageUrl], [p].[Protected], [p].[RefreshToken], [p].[Scope], [p].[TokenType], [p].[TweetCount], [p].[TwitterUserId], [p].[Username], [p].[Verified]
+FROM [PersonalProjectTable] AS [p]
+WHERE [p].[TwitterUserId] = @__profileResponse_data_id_0
+2025-06-10 11:15:08.527 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [PersonalProjectTable] SET [AccessToken] = @p0, [CreatedTimeIST] = @p1, [MediaCount] = @p2, [RefreshToken] = @p3, [TweetCount] = @p4
+OUTPUT 1
+WHERE [LoggedinUserID] = @p5;
+2025-06-10 11:15:08.545 +05:30 [INF] Executing RedirectResult, redirecting to http://localhost:4200/login-success?Status=Success&screenName=Karan%20Depale&UserName=karanloco&Location=Mumbai&Description=Backend%20Developer&FollowersCount=10&followingCount=23&mediaCount=98&TweetCount=432&likeCount=9&Email=Test%40gmail.com&TwitterUID=1711590698775101440&profileImageUrl=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1928412990958682113%2FCmpPn7ie_normal.jpg.
+2025-06-10 11:15:08.547 +05:30 [INF] Executed action LoginController.Callback (WebApi) in 4129.8061ms
+2025-06-10 11:15:08.547 +05:30 [INF] Executed endpoint 'LoginController.Callback (WebApi)'
+2025-06-10 11:15:08.564 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/api/Login/callback?state=random_state_123%7CeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImVtYWlsaWQiLCJVc2VySUQiOiI4IiwiZXhwIjoxNzQ5NTM3ODk5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3Mjc2LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyNzYvIn0.zJ8Wap_ius46Z8YBIiFvM5v9O6nH9sx6xthKbM6gX0I&code=eWlUdEhLaDVLQThETlVDc2VxTXJnel9MckVvU0Q1Z0owUjRDRFJnUkFlR1VXOjE3NDk1MzQyOTk3MzI6MTowOmFjOjE - 302 null null 4185.0639ms
+2025-06-10 11:15:42.485 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/api/TweetDashboard/GetAllTweets?TweetUID=1711590698775101440 - null null
+2025-06-10 11:15:42.485 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/_vs/browserLink - null null
+2025-06-10 11:15:42.485 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-10 11:15:42.849 +05:30 [INF] CORS policy execution successful.
+2025-06-10 11:15:42.837 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/_framework/aspnetcore-browser-refresh.js - 200 16497 application/javascript; charset=utf-8 330.6459ms
+2025-06-10 11:15:42.869 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-10 11:15:42.870 +05:30 [INF] Hosting environment: Development
+2025-06-10 11:15:42.870 +05:30 [INF] Content root path: C:\TweeterStream\backend\WebApi
+2025-06-10 11:15:42.931 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/_vs/browserLink - 200 null text/javascript; charset=UTF-8 471.5141ms
+2025-06-10 11:15:42.933 +05:30 [INF] Executing endpoint 'WebApi.Controllers.TweetDashboardController.GetAllTweets (WebApi)'
+2025-06-10 11:15:42.970 +05:30 [INF] Route matched with {action = "GetAllTweets", controller = "TweetDashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllTweets(System.String) on controller WebApi.Controllers.TweetDashboardController (WebApi).
+2025-06-10 11:15:42.991 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/swagger/v1/swagger.json - null null
+2025-06-10 11:15:43.117 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 126.312ms
+2025-06-10 11:15:45.417 +05:30 [INF] Executed DbCommand (83ms) [Parameters=[@__tweetUID_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[LoggedinUserID], [p].[AccessToken], [p].[CreatedAt], [p].[CreatedTimeIST], [p].[Description], [p].[Email], [p].[ExpiresIn], [p].[FollowersCount], [p].[FollowingCount], [p].[IsExist], [p].[IsExpired], [p].[LikeCount], [p].[ListedCount], [p].[Location], [p].[MediaCount], [p].[Name], [p].[OAuth2ClientID], [p].[OAuth2ClientSecret], [p].[ProfileImageUrl], [p].[Protected], [p].[RefreshToken], [p].[Scope], [p].[TokenType], [p].[TweetCount], [p].[TwitterUserId], [p].[Username], [p].[Verified]
+FROM [PersonalProjectTable] AS [p]
+WHERE [p].[TwitterUserId] = @__tweetUID_0
+2025-06-10 11:15:46.360 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType8`3[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[WebApi.Model.Datum, WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-10 11:15:46.371 +05:30 [INF] Executed action WebApi.Controllers.TweetDashboardController.GetAllTweets (WebApi) in 3396.6264ms
+2025-06-10 11:15:46.371 +05:30 [INF] Executed endpoint 'WebApi.Controllers.TweetDashboardController.GetAllTweets (WebApi)'
+2025-06-10 11:15:46.384 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/api/TweetDashboard/GetAllTweets?TweetUID=1711590698775101440 - 200 null application/json; charset=utf-8 3924.4272ms
+2025-06-10 11:19:29.830 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:44310/api/Login/logout?twitterUID=1711590698775101440 - null null
+2025-06-10 11:19:29.832 +05:30 [INF] CORS policy execution successful.
+2025-06-10 11:19:29.834 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:44310/api/Login/logout?twitterUID=1711590698775101440 - 204 null null 4.3513ms
+2025-06-10 11:19:29.835 +05:30 [INF] Request starting HTTP/2 POST https://localhost:44310/api/Login/logout?twitterUID=1711590698775101440 - application/json 2
+2025-06-10 11:19:29.836 +05:30 [INF] CORS policy execution successful.
+2025-06-10 11:19:29.837 +05:30 [INF] Executing endpoint 'LoginController.logout (WebApi)'
+2025-06-10 11:19:29.840 +05:30 [INF] Route matched with {action = "logout", controller = "Login"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] logout(System.String) on controller LoginController (WebApi).
+2025-06-10 11:19:29.918 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__twitterUID_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[LoggedinUserID], [p].[AccessToken], [p].[CreatedAt], [p].[CreatedTimeIST], [p].[Description], [p].[Email], [p].[ExpiresIn], [p].[FollowersCount], [p].[FollowingCount], [p].[IsExist], [p].[IsExpired], [p].[LikeCount], [p].[ListedCount], [p].[Location], [p].[MediaCount], [p].[Name], [p].[OAuth2ClientID], [p].[OAuth2ClientSecret], [p].[ProfileImageUrl], [p].[Protected], [p].[RefreshToken], [p].[Scope], [p].[TokenType], [p].[TweetCount], [p].[TwitterUserId], [p].[Username], [p].[Verified]
+FROM [PersonalProjectTable] AS [p]
+WHERE [p].[TwitterUserId] = @__twitterUID_0
+2025-06-10 11:19:30.029 +05:30 [INF] Executed DbCommand (27ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [PersonalProjectTable] SET [IsExist] = @p0
+OUTPUT 1
+WHERE [LoggedinUserID] = @p1;
+2025-06-10 11:19:30.037 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType7`2[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-10 11:19:30.039 +05:30 [INF] Executed action LoginController.logout (WebApi) in 198.7253ms
+2025-06-10 11:19:30.040 +05:30 [INF] Executed endpoint 'LoginController.logout (WebApi)'
+2025-06-10 11:19:30.040 +05:30 [INF] Request finished HTTP/2 POST https://localhost:44310/api/Login/logout?twitterUID=1711590698775101440 - 200 null application/json; charset=utf-8 204.6108ms
+2025-06-10 11:19:31.058 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/api/Login/login - null null
+2025-06-10 11:19:31.058 +05:30 [INF] CORS policy execution successful.
+2025-06-10 11:19:31.058 +05:30 [INF] Executing endpoint 'LoginController.Login (WebApi)'
+2025-06-10 11:19:31.060 +05:30 [INF] Route matched with {action = "Login", controller = "Login"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller LoginController (WebApi).
+2025-06-10 11:19:31.151 +05:30 [INF] LoginController: Login(): requestUrl->https://twitter.com/i/oauth2/authorize?response_type=code&client_id=RGxBbEdNaUFFb2tPYU9Fcl9ZbFc6MTpjaQ&redirect_uri=https%3A%2F%2Flocalhost%3A44310%2Fapi%2FLogin%2Fcallback&scope=media.write%20users.read%20tweet.read%20tweet.write%20offline.access%20dm.write%20dm.read%20like.write%20mute.write%20follows.write&state=random_state_123&code_challenge=12345&code_challenge_method=plain&state=random_state_123%7CeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImVtYWlsaWQiLCJVc2VySUQiOiI2NyIsImV4cCI6MTc0OTUzODE3MSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI3Ni8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3Mjc2LyJ9.69tfmMY9WnZvzZx4ZPwK5PvXEVpxpCjmfzq6gjznfv0
+2025-06-10 11:19:31.152 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`3[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-10 11:19:31.154 +05:30 [INF] Executed action LoginController.Login (WebApi) in 94.0149ms
+2025-06-10 11:19:31.154 +05:30 [INF] Executed endpoint 'LoginController.Login (WebApi)'
+2025-06-10 11:19:31.154 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/api/Login/login - 200 null application/json; charset=utf-8 96.7806ms
+2025-06-10 11:19:34.850 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44310/api/Login/callback?state=random_state_123%7CeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImVtYWlsaWQiLCJVc2VySUQiOiI2NyIsImV4cCI6MTc0OTUzODE3MSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI3Ni8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3Mjc2LyJ9.69tfmMY9WnZvzZx4ZPwK5PvXEVpxpCjmfzq6gjznfv0&code=djdxNi1oaXN4WWJKMFNTZVBodjdsX3pPU1NoUWQyNnF0eEo3aG05RE1OUGVZOjE3NDk1MzQ1NzA1Mzk6MToxOmFjOjE - null null
+2025-06-10 11:19:34.860 +05:30 [INF] Executing endpoint 'LoginController.Callback (WebApi)'
+2025-06-10 11:19:34.869 +05:30 [INF] Route matched with {action = "Callback", controller = "Login"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Callback(System.String, System.String) on controller LoginController (WebApi).
+2025-06-10 11:19:36.210 +05:30 [INF] Executed DbCommand (22ms) [Parameters=[@__profileResponse_data_id_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[LoggedinUserID], [p].[AccessToken], [p].[CreatedAt], [p].[CreatedTimeIST], [p].[Description], [p].[Email], [p].[ExpiresIn], [p].[FollowersCount], [p].[FollowingCount], [p].[IsExist], [p].[IsExpired], [p].[LikeCount], [p].[ListedCount], [p].[Location], [p].[MediaCount], [p].[Name], [p].[OAuth2ClientID], [p].[OAuth2ClientSecret], [p].[ProfileImageUrl], [p].[Protected], [p].[RefreshToken], [p].[Scope], [p].[TokenType], [p].[TweetCount], [p].[TwitterUserId], [p].[Username], [p].[Verified]
+FROM [PersonalProjectTable] AS [p]
+WHERE [p].[TwitterUserId] = @__profileResponse_data_id_0
+2025-06-10 11:19:36.253 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@p4='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [PersonalProjectTable] SET [AccessToken] = @p0, [CreatedTimeIST] = @p1, [IsExist] = @p2, [RefreshToken] = @p3
+OUTPUT 1
+WHERE [LoggedinUserID] = @p4;
+2025-06-10 11:19:36.255 +05:30 [INF] Executing RedirectResult, redirecting to http://localhost:4200/login-success?Status=Success&screenName=Karan%20Depale&UserName=karanloco&Location=Mumbai&Description=Backend%20Developer&FollowersCount=10&followingCount=23&mediaCount=98&TweetCount=432&likeCount=9&Email=Test%40gmail.com&TwitterUID=1711590698775101440&profileImageUrl=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1928412990958682113%2FCmpPn7ie_normal.jpg.
+2025-06-10 11:19:36.256 +05:30 [INF] Executed action LoginController.Callback (WebApi) in 1386.3355ms
+2025-06-10 11:19:36.256 +05:30 [INF] Executed endpoint 'LoginController.Callback (WebApi)'
+2025-06-10 11:19:36.256 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44310/api/Login/callback?state=random_state_123%7CeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImVtYWlsaWQiLCJVc2VySUQiOiI2NyIsImV4cCI6MTc0OTUzODE3MSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI3Ni8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3Mjc2LyJ9.69tfmMY9WnZvzZx4ZPwK5PvXEVpxpCjmfzq6gjznfv0&code=djdxNi1oaXN4WWJKMFNTZVBodjdsX3pPU1NoUWQyNnF0eEo3aG05RE1OUGVZOjE3NDk1MzQ1NzA1Mzk6MToxOmFjOjE - 302 null null 1406.7594ms

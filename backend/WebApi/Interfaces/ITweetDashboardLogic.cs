@@ -12,8 +12,8 @@ namespace WebApi.Interfaces
         Task<string> GenerateMediaID(byte[] mediaBytes, string contentType, string tweeterUID);
         public Task<SerachByUserNamesResponse> SearchTweeterProfile (string UserNames);
         public Task<GetAnalyticsResponse> GetAnalytics(string ContentUrl);
-
-
+        public  Task<List<TrendLocation>> FetchTrendsLocations();
+        public Task<TrendResponse> TrendsByWoeid(string woeid, bool excludeHashtags = false);
 
     }
 }

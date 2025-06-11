@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Serilog;
+using WebApi;
 using WebApi.BusinessLogic;
 using WebApi.DBEntityFramework;
 using WebApi.HybridCacheService;
@@ -8,6 +10,10 @@ using WebApi.Model;
 using WebApi.Wrapper;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+LoggingFactory.ConfigureLogging(); // Configure Serilog logging
+builder.Host.UseSerilog(); // Tell .NET to use Serilog
 
 // Add services to the container.
 

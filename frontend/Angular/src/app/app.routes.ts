@@ -7,6 +7,7 @@ import { BodyComponent } from './body/body.component';
 import { ComposeTweetComponent } from './body/compose-tweet/compose-tweet.component';
 import { SearchUsersComponent } from './body/search-users/search-users.component';
 import { AnalyticsComponent } from './body/analytics/analytics.component';
+import { TwitterTrendsComponent } from './body/twitter-trends/twitter-trends.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -25,6 +26,7 @@ export const routes: Routes = [
           { path: 'Compose', component: ComposeTweetComponent },
           { path: 'Search User', component: SearchUsersComponent },
           { path: 'Analytics', component: AnalyticsComponent },
+          { path: 'TwitterTrends', component: TwitterTrendsComponent },
         ]
       }
     ]

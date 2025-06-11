@@ -16,11 +16,13 @@ namespace WebApi.BusinessLogic
     {
         private readonly ITweetDashboardWrapper _tweetDashboardWrapper;
         private readonly IConfiguration _configuration;
+        private static ILogger<LoginLogic> _logger;
 
-        public TweetDashboardLogic(ITweetDashboardWrapper tweetDashboardWrapper, IConfiguration configuration)
+        public TweetDashboardLogic(ITweetDashboardWrapper tweetDashboardWrapper, IConfiguration configuration, ILogger<LoginLogic> logger)
         {
             _tweetDashboardWrapper = tweetDashboardWrapper;
             _configuration = configuration;
+            _logger = logger;
         }
 
         public async Task<GetAllTweetsResponse> GetAllTweets(string tweetUID)
@@ -37,9 +39,9 @@ namespace WebApi.BusinessLogic
 
                 return getTweetRes;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                throw new Exception($"Error fetching tweets for UID {tweetUID}: {ex.Message}", ex);
             }
         }
 
@@ -78,7 +80,12 @@ namespace WebApi.BusinessLogic
                     if (!string.IsNullOrEmpty(nextToken))
                         request.AddQueryParameter("pagination_token", nextToken);
 
+
                     var response = await client.ExecuteAsync(request);
+
+                    string RequestLog = JsonConvert.SerializeObject(request.Parameters);
+                    _logger.LogWarning($"TweetDashboardLogic: GetTweets(): Request->{RequestLog} , Response->{response.Content} ");
+
                     var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
                     // var pageResponse = JsonSerializer.Deserialize<GetAllTweetsResponse>(response.Content, options);
@@ -107,8 +114,8 @@ namespace WebApi.BusinessLogic
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                _logger.LogError($"TweetDashboardLogic: GetTweets() failed for UID {twitterUID} , AccessToken->{tokens[0]} , RefreshToken->{tokens[1]}, Exception: {ex.Message}");
+                throw new Exception($"Error fetching tweets for UID {twitterUID}: {ex.Message} ,AccessToken->{tokens[0]} , RefreshToken->{tokens[1]}", ex);
             }
         }
 
@@ -129,7 +136,7 @@ namespace WebApi.BusinessLogic
             }
             catch (Exception ex)
             {
-                return null;
+                throw new Exception($"Error composing tweet for UID {TweetUID} ,tweetContent->{tweetContent} , {ex.Message}", ex);
             }
         }
 
@@ -155,6 +162,10 @@ namespace WebApi.BusinessLogic
                 request.AddJsonBody(body);
 
                 var response = await client.ExecuteAsync(request);
+
+                string RequestLog = JsonConvert.SerializeObject(request.Parameters);
+                _logger.LogWarning($"TweetDashboardLogic: PostTweet(): Request->{RequestLog} , Response->{response.Content} ");
+
                 var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
               
                 var composeResponse = JsonConvert.DeserializeObject<ComposeTweetResponse>(response.Content);
@@ -162,8 +173,8 @@ namespace WebApi.BusinessLogic
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                _logger.LogError($"TweetDashboardLogic: PostTweet() failed, tweetContent->{tweetContent} , AccessToken->{tokens[0]} , RefreshToken->{tokens[1]}, Exception: {ex.Message}");
+                throw new Exception($"Error posting tweet: {ex.Message}, tweetContent->{ tweetContent } ,AccessToken->{tokens[0]} , RefreshToken->{tokens[1]} ",ex);
             }
 
         }
@@ -192,12 +203,14 @@ namespace WebApi.BusinessLogic
                 {
                      mediaID = await UploadMediaInChunks(mediaBytes, contentType, Tokens[0] , mediaCategory);
                 }
+
+
                 return mediaID;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return null;
+                throw new Exception($"Error generating media ID for Twitter UID {twitterUid} , mediaBytes->{mediaBytes} , contentType->{contentType}, {ex.Message}", ex);
             }
         }
 
@@ -254,6 +267,10 @@ namespace WebApi.BusinessLogic
                 });
 
                 var response = await client.ExecuteAsync(request);
+
+                string RequestLog = JsonConvert.SerializeObject(request.Parameters);
+                _logger.LogWarning($"TweetDashboardLogic: InitializeMediaUpload(): Request->{RequestLog} , Response->{response.Content} ");
+
                 var initJsonResponse = JsonConvert.DeserializeObject<dynamic>(response.Content);
                 string mediaID = initJsonResponse?.data?.id?.ToString();
 
@@ -261,8 +278,8 @@ namespace WebApi.BusinessLogic
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                _logger.LogError($"TweetDashboardLogic: InitializeMediaUpload() failed, mediaSize->{mediaSize} , mediaType->{mediaType} , token->{token} , mediaCategory->{mediaCategory}, Exception: {ex.Message}");
+                throw new Exception($"Error initializing media upload: {ex.Message}, mediaSize->{mediaSize} , mediaType->{mediaType} , token->{token} , mediaCategory->{mediaCategory}", ex);
             }
         }
         private async Task<string> AppendMediaChunk(string mediaID, byte[] chunk, int segmentIndex, string token ,string mediaType)
@@ -287,12 +304,16 @@ namespace WebApi.BusinessLogic
                 request.AddFile("media", chunk, $"chunk_{segmentIndex}", mediaType);
 
                 var response = await client.ExecuteAsync(request);
+
+                string RequestLog = JsonConvert.SerializeObject(request.Parameters);
+                _logger.LogWarning($"TweetDashboardLogic: AppendMediaChunk(): Request->{RequestLog} , Response->{response.Content} ");
+
                 return response.IsSuccessful ? mediaID : null;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                _logger.LogError($"TweetDashboardLogic: AppendMediaChunk() failed, mediaID->{mediaID} , segmentIndex->{segmentIndex} , token->{token} , mediaType->{mediaType}, Exception: {ex.Message}");
+                throw new Exception($"Error appending media chunk: {ex.Message}, mediaID->{mediaID} , segmentIndex->{segmentIndex} , token->{token} , mediaType->{mediaType}", ex);
             }
         }
         private async Task <bool> FinalizeMediaUpload(string mediaID, string token)
@@ -319,12 +340,16 @@ namespace WebApi.BusinessLogic
                 });
 
                 var response = await client.ExecuteAsync(request);
+
+                string RequestLog = JsonConvert.SerializeObject(request.Parameters);
+                _logger.LogWarning($"TweetDashboardLogic: FinalizeMediaUpload(): Request->{RequestLog} , Response->{response.Content} ");
+
                 return response.IsSuccessful;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                _logger.LogError($"TweetDashboardLogic: FinalizeMediaUpload() failed, mediaID->{mediaID} , token->{token}, Exception: {ex.Message}");
+                throw new Exception($"Error finalizing media upload: {ex.Message}, mediaID->{mediaID} , token->{token}", ex);
             }
         }
 
@@ -367,10 +392,12 @@ namespace WebApi.BusinessLogic
                 Thread.Sleep(4000);
                 var response = await client.ExecuteAsync(request);
 
+                string RequestLog = JsonConvert.SerializeObject(request.Parameters);
+                _logger.LogWarning($"TweetDashboardLogic: ComposeTweetWithMedia(): Request->{RequestLog} , Response->{response.Content} ");
+
                 if (!response.IsSuccessful)
                 {
-                    Console.WriteLine("Tweet API error: " + response.Content);
-                    return null;
+                    throw new Exception($"Failed to compose tweet with media. Status: {response.StatusCode}, Message: {response.Content} , tweetContent->{tweetContent} , twitterUID->{twitterUID}");
                 }
 
                 var composeResponse = JsonConvert.DeserializeObject<ComposeTweetResponse>(response.Content);
@@ -378,8 +405,8 @@ namespace WebApi.BusinessLogic
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                _logger.LogError($"TweetDashboardLogic: ComposeTweetWithMedia() failed, tweetContent->{tweetContent} , twitterUID->{twitterUID} , mediaIds->{mediaIds}, Exception: {ex.Message}");
+                throw new Exception($"Error composing tweet with media for Twitter UID {twitterUID} , tweetContent->{tweetContent} , mediaIds->{mediaIds} , {ex.Message}", ex);
             }
         }
 
@@ -399,7 +426,7 @@ namespace WebApi.BusinessLogic
             }
             catch (Exception ex)
             {
-                return null;
+                throw new Exception($"Error searching Twitter profiles for usernames {userNames}: {ex.Message}", ex);
             }
         }
 
@@ -443,6 +470,10 @@ namespace WebApi.BusinessLogic
                     request.AddQueryParameter("tweet.fields", "text,public_metrics");
 
                     var response = await client.ExecuteAsync(request);
+
+                    string RequestLog = JsonConvert.SerializeObject(request.Parameters);
+                    _logger.LogWarning($"TweetDashboardLogic: SearchProfilesByScreenNames(): Request->{RequestLog} , Response->{response.Content} ");
+
                     if (!response.IsSuccessful || string.IsNullOrWhiteSpace(response.Content))
                         continue;
 
@@ -458,7 +489,7 @@ namespace WebApi.BusinessLogic
             }
             catch (Exception)
             {
-                return null;
+                throw new Exception($"Error searching Twitter profiles for usernames {UserNames} , AccessTken->{tokens[0]},RefreshToken->{tokens[1]}");
             }
         }
 
@@ -478,7 +509,7 @@ namespace WebApi.BusinessLogic
             }
             catch (Exception ex)
             {
-                return null;
+                throw new Exception($"Error fetching analytics for content URL {ContentUrl}: {ex.Message}", ex);
             }
         }
 
@@ -506,6 +537,9 @@ namespace WebApi.BusinessLogic
                 request.AddQueryParameter("place.fields", "id,name,country,place_type,full_name,geo");
 
                 var response = await client.ExecuteAsync(request);
+                string RequestLog = JsonConvert.SerializeObject(request.Parameters);
+                _logger.LogWarning($"TweetDashboardLogic: FetchAnalytics(): Request->{RequestLog} , Response->{response.Content} ");
+
 
                 var analyticsResponse = JsonConvert.DeserializeObject<GetAnalyticsResponse>(response.Content);
 
@@ -515,11 +549,95 @@ namespace WebApi.BusinessLogic
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                throw new Exception( $"Error fetching analytics for content URL {ContentUrl}: {ex.Message} , AccessToken->{tokens[0]} , RefreshToken->{tokens[1]}", ex);
             }
 
 
         }
+
+
+        public async Task<List<TrendLocation>> FetchTrendsLocations()
+        {
+            try
+            {
+                string bearerToken = "AAAAAAAAAAAAAAAAAAAAAOLq5wAAAAAANWKhWPqmsNrAsAlZEY3Zc8bmAUM%3DNwrg9NVNawq5p5A4HZ6UxzLU2QLAiEWlAnJrVgjXMkNWjRB2SD";
+                string baseUrl =  "https://api.twitter.com/1.1";
+                string endpoint = "/trends/available.json";
+
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest(endpoint, Method.Get);
+
+                request.AddHeader("Authorization", $"Bearer {bearerToken}");
+                request.AddHeader("Content-Type", "application/json");
+
+                var response = await client.ExecuteAsync(request);
+                string requestLog = JsonConvert.SerializeObject(request.Parameters);
+                _logger.LogWarning($"TrendLogic: FetchAvailableTrends(): Request->{requestLog}, Response->{response.Content}");
+
+                if (!response.IsSuccessful)
+                {
+                    throw new Exception($"API call failed: {response.StatusCode}, Content: {response.Content}");
+                }
+
+                var trendLocations = JsonConvert.DeserializeObject<List<TrendLocation>>(response.Content);
+                return trendLocations;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error fetching available trends: {ex.Message}", ex);
+            }
+        }
+
+
+        public async Task<TrendResponse> TrendsByWoeid(string woeid, bool excludeHashtags = false)
+        {
+            try
+            {
+                string bearerToken = "AAAAAAAAAAAAAAAAAAAAAOLq5wAAAAAANWKhWPqmsNrAsAlZEY3Zc8bmAUM%3DNwrg9NVNawq5p5A4HZ6UxzLU2QLAiEWlAnJrVgjXMkNWjRB2SD";
+                string baseUrl = "https://api.twitter.com/1.1";
+                string endpoint = $"/trends/place.json?id={woeid}";
+
+                // Add optional exclude parameter
+                if (excludeHashtags)
+                {
+                    endpoint += "&exclude=hashtags";
+                }
+
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest(endpoint, Method.Get);
+
+                request.AddHeader("Authorization", $"Bearer {bearerToken}");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("Accept", "application/json"); // Ensure JSON response
+
+                var response = await client.ExecuteAsync(request);
+                string requestLog = JsonConvert.SerializeObject(request.Parameters);
+                _logger.LogWarning($"TrendLogic: TrendsByWoeid(): Request->{requestLog}, Response->{response.Content}");
+
+                if (!response.IsSuccessful)
+                {
+                    throw new Exception($"API call failed: {response.StatusCode}, Content: {response.Content}");
+                }
+
+                var trendResponses = JsonConvert.DeserializeObject<List<TrendResponse>>(response.Content);
+
+                if (trendResponses == null || !trendResponses.Any())
+                {
+                    _logger.LogWarning($"No trends found for WOEID {woeid}");
+                    return new TrendResponse { Trends = new List<Trend>(), Locations = new List<TrendLocation1>() };
+                }
+
+                return trendResponses.First();
+            }
+            
+            catch (Exception ex)
+            {
+                throw new Exception($"Error fetching trends for WOEID {woeid}: {ex.Message}", ex);
+            }
+        }
+
+
+
+
     }
 }
