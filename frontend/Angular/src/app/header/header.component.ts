@@ -9,7 +9,7 @@ import { CentralizeServiceService } from '../centralize-service.service';
   selector: 'app-header',
   imports: [CommonModule,FormsModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css' 
 })
 export class HeaderComponent implements OnInit {
    

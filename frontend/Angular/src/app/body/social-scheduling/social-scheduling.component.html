@@ -1,0 +1,191 @@
+<div class="horizontal-layout">
+  <div class="stepper-area">
+    <div class="stepper-horizontal">
+      <div class="step" [ngClass]="{ 'active': currentStep === 1 }">
+        <div class="circle">1</div>
+        <div class="label">Select social profile</div>
+      </div>
+      <div class="line"></div>
+      <div class="step" [ngClass]="{ 'active': currentStep === 2 }">
+        <div class="circle">2</div>
+        <div class="label">Compose post</div>
+      </div>
+      <div class="line"></div>
+      <div class="step" [ngClass]="{ 'active': currentStep === 3 }">
+        <div class="circle">3</div>
+        <div class="label">Publish</div>
+      </div>
+    </div>
+
+    <!-- Compose Post UI shown only in Step 2 -->
+    <div *ngIf="currentStep === 2" class="compose-post-container">
+      <h2>Compose your post</h2>
+      <div class="post-meta">
+        <span><strong>Post content for:</strong> X</span>
+      </div>
+
+      <textarea
+        class="post-textarea"
+        placeholder="Type your content here..."
+        [(ngModel)]="postContent"
+        (input)="updatePostContent()"
+      ></textarea>
+
+      <div class="action-bar">
+        <div class="left-icons"><span>😊</span></div>
+        <div class="char-limit">X 280</div>
+      </div>
+
+      <div class="media-attachments">
+        <!-- Image Upload -->
+        <input
+          type="file"
+          accept="image/*"
+          hidden
+          #imageInput
+          multiple
+          (change)="handleImageUpload($event)"
+        />
+        <button
+          class="media-btn"
+          [disabled]="previewVideo !== null"
+          [ngClass]="{ 'disabled-btn': previewVideo }"
+          (click)="imageInput.click()"
+        >
+          🖼 Attach Image
+        </button>
+
+        <!-- Video Upload -->
+        <input
+          type="file"
+          accept="video/*"
+          hidden
+          #videoInput
+          (change)="handleVideoUpload($event)"
+        />
+        <button
+          class="media-btn"
+          [disabled]="previewImages.length > 0"
+          [ngClass]="{ 'disabled-btn': previewImages.length > 0 }"
+          (click)="videoInput.click()"
+        >
+          🎥 Attach Video
+        </button>
+      </div>
+    </div>
+
+
+
+
+
+<!-- Step 3: Publish -->
+<div *ngIf="currentStep === 3" class="publish-step">
+  <h2>Schedule or Publish Your Post</h2>
+
+  <div class="radio-options">
+    <label>
+      <input type="radio" class="publishnowbut" name="publishOption" [(ngModel)]="publishOption" value="now" (change)="onPublishOptionChange()" />
+      Publish Now
+    </label>
+    <label>
+      <input type="radio" name="publishOption" [(ngModel)]="publishOption" value="later" (change)="onPublishOptionChange()" />
+      Publish Later
+    </label>
+  </div>
+
+  <div *ngIf="publishOption === 'later'" class="datetime-picker">
+    <label for="publishDate">Select Date:</label>
+    <input
+      id="publishDate"
+      type="date"
+      [(ngModel)]="selectedDate"
+      [min]="minDate"
+      (change)="onDateChange()"
+    />
+
+    <label for="publishTime">Select Time:</label>
+    <input
+      id="publishTime"
+      type="time"
+      [(ngModel)]="selectedTime"
+      [min]="minTime"
+      (change)="onTimeChange()"
+      [disabled]="!selectedDate"
+    />
+
+      <!-- Display selected date and time -->
+    <div class="selected-datetime" *ngIf="selectedDate && selectedTime">
+       <p><strong>Scheduled for:</strong> {{ selectedDate }} at {{ selectedTime }}</p>
+    </div>
+  </div>
+  
+
+  <div class="button-row">
+    <button class="nav-btn" (click)="goToPrevStep()">Back</button>
+    <button class="nav-btn" (click)="publishPost()">Publish</button>
+  </div>
+</div>
+
+
+
+
+    <div class="button-row" *ngIf="currentStep < 3">
+      <button class="nav-btn" (click)="goToPrevStep()" [disabled]="currentStep === 1">Back</button>
+      <button class="nav-btn" (click)="goToNextStep()" [disabled]="currentStep === 4">Next</button>
+    </div>
+  </div>
+
+  <!-- User Profile Card -->
+  <div class="profile-card-wrapper" *ngIf="userProfile.screenName">
+    <div class="twitter-card">
+      <div class="twitter-card-header">
+        <img [src]="userProfile.profileImageUrl" alt="profile" class="profile-img" />
+        <div class="twitter-card-info">
+          <span class="name">{{ userProfile.screenName }}</span>
+          <span class="username">{{ userProfile.UserName }}</span>
+        </div>
+        <span class="verified-badge">✔️</span>
+        <span class="more-options">⋯</span>
+      </div>
+
+      <div class="twitter-card-body">
+        <p *ngIf="!postContent && previewImages.length === 0 && !previewVideo" class="preview-placeholder">
+          Add content to see<br />post preview
+        </p>
+
+        <p *ngIf="postContent">{{ postContent }}</p>
+
+        <div *ngIf="previewImages.length > 0" class="image-preview-list">
+          <div *ngFor="let img of previewImages; let i = index" class="media-preview-wrapper">
+            <img [src]="img" class="preview-media" />
+            <button class="delete-btn" (click)="removeImage(i)">🗑</button>
+          </div>
+        </div>
+
+        <div *ngIf="previewVideo" class="media-preview-wrapper">
+          <video controls class="preview-media">
+            <source [src]="previewVideo" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button class="delete-btn" (click)="removeVideo()">🗑</button>
+        </div>
+      </div>
+
+      <div class="twitter-card-footer">
+        <span>💬 NA</span>
+        <span>📷 {{ previewImages.length > 0 ? previewImages.length + ' image(s)' : 'NA' }}</span>
+        <span>❤️ NA</span>
+        <span>📊 NA</span>
+        <span>📌 NA</span>
+        <span>📤</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
